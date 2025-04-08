@@ -1,110 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.duan_oder_doan">
+    package="com.example.doan">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/utc"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/utc_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAn_Oder_DoAn"
         tools:targetApi="31">
         <activity
-            android:name=".ThongBao"
+            android:name="com.example.doan.activities.ThongBao"
             android:exported="false"
-            android:parentActivityName=".TrangChuUser"/>
+            android:parentActivityName="com.example.doan.activities.TrangChuUser"/>
         <activity
-            android:name=".HoaDonUser"
+            android:name="com.example.doan.activities.HoaDonUser"
             android:exported="false" />
         <activity
-            android:name=".TrangChuChef"
+            android:name="com.example.doan.activities.TrangChuRestaurant"
             android:exported="false" />
         <activity
-            android:name=".FoodList"
-            android:exported="false"
-            android:parentActivityName=".TrangChuUser" />
-        <activity
-            android:name=".AdminManageActivity"
+            android:name="com.example.doan.activities.TrangChuShipper"
             android:exported="false" />
         <activity
-            android:name=".StatisticalManageActivity"
-            android:exported="false"
-            android:parentActivityName=".TrangChuManage"/>
-        <activity
-            android:name=".AddFoodManageActivity"
-            android:exported="false"
-            android:parentActivityName=".TrangChuManage" />
-        <activity
-            android:name=".OdersManageActivity"
-            android:exported="false"
-            android:parentActivityName=".TrangChuManage" />
-        <activity
-            android:name=".XacNhanPass_Email"
-            android:exported="false"
-            android:parentActivityName=".DangNhap" />
-        <activity
-            android:name=".TimKiemFoodUser"
-            android:exported="false"
-            android:parentActivityName=".TrangChuUser" />
-        <activity
-            android:name=".EmailUser"
-            android:exported="false"
-            android:parentActivityName=".GioiThieuUser" />
-        <activity
-            android:name=".PhoneUser"
-            android:exported="false"
-            android:parentActivityName=".GioiThieuUser" />
-        <activity
-            android:name=".NameUser"
-            android:exported="false"
-            android:parentActivityName=".GioiThieuUser" />
-        <activity
-            android:name=".AvatarUser"
-            android:exported="false"
-            android:parentActivityName=".GioiThieuUser" />
-        <activity
-            android:name=".DoiMatKhauUser"
-            android:exported="false"
-            android:parentActivityName=".ThongTinUser" />
-        <activity
-            android:name=".ThongKeUser"
-            android:exported="false"
-            android:parentActivityName=".ThongTinUser" />
-        <activity
-            android:name=".GioiThieuUser"
-            android:exported="false"
-            android:parentActivityName=".ThongTinUser" />
-        <activity
-            android:name=".ThongTinUser"
+            android:name="com.example.doan.activities.DonDangGiaoActivity"
             android:exported="false" />
         <activity
-            android:name=".GioHangUser"
+            android:name="com.example.doan.activities.FoodList"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.TrangChuUser" />
+        <activity
+            android:name="com.example.doan.activities.AdminManageActivity"
             android:exported="false" />
         <activity
-            android:name=".YeuThichUser"
+            android:name="com.example.doan.activities.StatisticalManageActivity"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.TrangChuManage"/>
+        <activity
+            android:name="com.example.doan.activities.AddFoodManageActivity"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.TrangChuManage" />
+        <activity
+            android:name="com.example.doan.activities.OdersManageActivity"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.TrangChuManage" />
+        <activity
+            android:name="com.example.doan.activities.XacNhanPass_Email"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.DangNhap" />
+        <activity
+            android:name="com.example.doan.activities.TimKiemFoodUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.TrangChuUser" />
+        <activity
+            android:name="com.example.doan.activities.EmailUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.GioiThieuUser" />
+        <activity
+            android:name="com.example.doan.activities.PhoneUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.GioiThieuUser" />
+        <activity
+            android:name="com.example.doan.activities.NameUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.GioiThieuUser" />
+        <activity
+            android:name="com.example.doan.activities.AvatarUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.GioiThieuUser" />
+        <activity
+            android:name="com.example.doan.activities.DoiMatKhauUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.ThongTinUser" />
+        <activity
+            android:name="com.example.doan.activities.ThongKeUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.ThongTinUser" />
+        <activity
+            android:name="com.example.doan.activities.GioiThieuUser"
+            android:exported="false"
+            android:parentActivityName="com.example.doan.activities.ThongTinUser" />
+        <activity
+            android:name="com.example.doan.activities.ThongTinUser"
             android:exported="false" />
         <activity
-            android:name=".TrangChuManage"
+            android:name="com.example.doan.activities.GioHangUser"
             android:exported="false" />
         <activity
-            android:name=".TrangChuUser"
+            android:name="com.example.doan.activities.YeuThichUser"
             android:exported="false" />
         <activity
-            android:name=".DangNhap"
+            android:name="com.example.doan.activities.TrangChuManage"
             android:exported="false" />
         <activity
-            android:name=".DangKy"
+            android:name="com.example.doan.activities.TrangChuUser"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.doan.activities.DangNhap"
+            android:exported="false" />
+        <activity
+            android:name="com.example.doan.activities.DangKy"
+            android:exported="false" />
+        <activity
+            android:name="com.example.doan.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

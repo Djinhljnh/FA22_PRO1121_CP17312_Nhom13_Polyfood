@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThongTinUser"
+    tools:context=".activities.ThongTinUser"
     android:background="#F4F3F3">
 
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:background="@drawable/border3"
-                android:backgroundTint="#FF9800"/>
+                android:backgroundTint="#96C93D"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_avatar"
@@ -45,7 +45,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phạm Gia Công"
+                android:text="Đinh Công Linh"
                 android:layout_gravity="center"
                 android:textSize="30dp"
                 android:layout_marginTop="10dp"

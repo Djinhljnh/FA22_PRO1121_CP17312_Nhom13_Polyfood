@@ -27,7 +27,7 @@
         <ImageView
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logoutc"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Poly Food Restaurant"
+                android:text="UTC Food Restaurant"
                 android:layout_gravity="center"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -49,17 +49,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Address: số 13, phố Trịnh Văn Bô, Nam Từ Liêm, Hà Nội."
+                android:text="Address: số 3, Cầu Giấy, Đống Đa, Hà Nội."
                 android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email: poly@gmail.com"
+                android:text="Email: UTC@gmail.com"
                 android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone no: 0985740301"
+                android:text="Phone no: 0796797261"
                 android:textColor="@color/black"/>
         </LinearLayout>
     </LinearLayout>

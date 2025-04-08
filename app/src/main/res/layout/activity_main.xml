@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="#FFF"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <ImageView
         android:id="@+id/img_mhc1"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Welcome to Foly Food! Hasty and tasty!"
+        android:text="Welcome to UTC Food!"
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -39,7 +39,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="550dp"
-        android:src="@drawable/mhc2"
+        android:src="@drawable/logoutc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="224dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/logoutc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:src="@drawable/mhc6" />
+            android:src="@drawable/logoutc" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:id="@+id/tv_mhc1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Poly Food"
+                android:text="UTC Food"
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -99,7 +99,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="Let's experience delicious food together with Foly."
+                android:text="Let's go."
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_gravity="center" />

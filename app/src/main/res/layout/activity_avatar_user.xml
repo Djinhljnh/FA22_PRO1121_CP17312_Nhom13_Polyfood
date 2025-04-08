@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AvatarUser"
+    tools:context=".activities.AvatarUser"
     android:orientation="vertical"
     android:background="#F4F3F3">
 
@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Change avatar"
+            android:hint="Change avatar"
             android:layout_gravity="center"
             android:textSize="20dp"
             android:textColor="#000000"/>

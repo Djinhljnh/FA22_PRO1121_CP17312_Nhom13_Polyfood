@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".XacNhanPass_Email"
+    tools:context=".activities.XacNhanPass_Email"
     android:orientation="vertical"
     android:background="#fff">
 
@@ -18,7 +18,7 @@
         android:layout_marginTop="50dp"
         android:layout_width="200dp"
         android:layout_height="160dp"
-        android:src="@drawable/mhc6"
+        android:src="@drawable/logoutc"
         android:layout_gravity="center"/>
 
     <TextView

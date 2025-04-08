@@ -6,7 +6,7 @@
     android:background="#F4F3F3"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".StatisticalManageActivity">
+    tools:context=".activities.StatisticalManageActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

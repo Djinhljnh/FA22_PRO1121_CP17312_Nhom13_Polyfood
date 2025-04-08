@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DangNhap"
+    tools:context=".activities.DangNhap"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:orientation="vertical"
@@ -14,7 +14,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="150dp"
         android:layout_height="110dp"
-        android:src="@drawable/mhc6"/>
+        android:src="@drawable/logoutc"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
