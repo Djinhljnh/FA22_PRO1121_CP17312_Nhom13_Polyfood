@@ -1,6 +1,7 @@
 package com.example.doan.adapter;
 
 import android.app.Dialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,61 +96,121 @@ public class Adapter_Detailed_Invoice_Res extends RecyclerView.Adapter<View_Hold
             dialog.show();
         });
 
+
         holder.tvStatus.setText(hoaDonChiTietAdmin.getStatus());
+
         if (holder.tvStatus.getText().toString().equals("Confirm")) {
             holder.tvStatus.setVisibility(View.VISIBLE);
             holder.tvStatus.setBackgroundResource(R.drawable.border2);
             holder.tvStatus.setOnClickListener(v -> {
                 String status = "Doing";
+                String uid = hoaDonChiTietAdmin.getUId();
+                String date = hoaDonChiTietAdmin.getDate();
+                String id = String.valueOf(hoaDonChiTietAdmin.getId());
+
+                Log.d("DEBUG_CLICK", "tvStatus clicked!");
+                Log.d("FIREBASE_UID", "UID (check null): " + (uid == null ? "null" : uid));
 
                 FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
+                        .child(id)
                         .child("status")
-                        .setValue(status).addOnCompleteListener(task -> {
+                        .setValue(status)
+                        .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Toast.makeText(v.getContext(), "Đơn hàng đã chuyển sang trạng thái 'Doing'", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Cập nhật trạng thái trong Detailed_Invoices thành công", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(v.getContext(), "Lỗi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Lỗi cập nhật trong Detailed_Invoices!", Toast.LENGTH_SHORT).show();
                             }
                         });
-                FirebaseDatabase.getInstance().getReference("Detailed_Invoice")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                        .child("status")
-                        .setValue(status).addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(v.getContext(), "Đơn hàng đã chuyển sang trạng thái 'Doing'", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(v.getContext(), "Lỗi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+
+                DatabaseReference userInvoicesRef = FirebaseDatabase.getInstance()
+                        .getReference("Users")
+                        .child(uid)
+                        .child("Detailed_Invoice");
+
+                userInvoicesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot invoiceSnap : snapshot.getChildren()) {
+                            String invoiceTimestamp = invoiceSnap.child("date").getValue(String.class);
+                            if (invoiceTimestamp != null && invoiceTimestamp.equals(date)) {
+                                invoiceSnap.getRef().child("status").setValue(status)
+                                        .addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(v.getContext(), "Cập nhật trạng thái thành công!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(v.getContext(), "Lỗi cập nhật Users!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                break;
                             }
-                        });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("FIREBASE", "Lỗi đọc dữ liệu: " + error.getMessage());
+                    }
+                });
             });
         }
+
+
 
         if (holder.tvStatus.getText().toString().equals("Doing")) {
             holder.line_item1.setBackgroundResource(R.drawable.a_doing);
             holder.tvStatus.setOnClickListener(v -> {
                 String status = "finished";
 
+
+                String uid = hoaDonChiTietAdmin.getUId();
+                String date = hoaDonChiTietAdmin.getDate();
+                String id = String.valueOf(hoaDonChiTietAdmin.getId());
+
+                Log.d("DEBUG_CLICK", "tvStatus clicked!");
+                Log.d("FIREBASE_UID", "UID (check null): " + (uid == null ? "null" : uid));
+
                 FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
+                        .child(id)
                         .child("status")
-                        .setValue(status).addOnCompleteListener(task -> {
+                        .setValue(status)
+                        .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Toast.makeText(v.getContext(), "Đơn hàng đã chuyển sang trạng thái 'Shipping'", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Cập nhật trạng thái trong Detailed_Invoices thành công", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(v.getContext(), "Lỗi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Lỗi cập nhật trong Detailed_Invoices!", Toast.LENGTH_SHORT).show();
                             }
                         });
-                FirebaseDatabase.getInstance().getReference("Detailed_Invoice")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                        .child("status")
-                        .setValue(status).addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(v.getContext(), "Đơn hàng đã chuyển sang trạng thái 'Shipping'", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(v.getContext(), "Lỗi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+
+                DatabaseReference userInvoicesRef = FirebaseDatabase.getInstance()
+                        .getReference("Users")
+                        .child(uid)
+                        .child("Detailed_Invoice");
+
+                userInvoicesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot invoiceSnap : snapshot.getChildren()) {
+                            String invoiceTimestamp = invoiceSnap.child("date").getValue(String.class);
+                            if (invoiceTimestamp != null && invoiceTimestamp.equals(date)) {
+                                invoiceSnap.getRef().child("status").setValue(status)
+                                        .addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(v.getContext(), "Cập nhật trạng thái thành công!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(v.getContext(), "Lỗi cập nhật Users!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                break;
                             }
-                        });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("FIREBASE", "Lỗi đọc dữ liệu: " + error.getMessage());
+                    }
+                });
             });
         }
 

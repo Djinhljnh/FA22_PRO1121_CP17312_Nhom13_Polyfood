@@ -2,6 +2,7 @@ package com.example.doan.model;
 
 public class HoaDonChiTietAdmin {
     private int id;
+    private String UId;
     private String date;
     private String sum_Price;
     private String name;
@@ -12,8 +13,9 @@ public class HoaDonChiTietAdmin {
     public HoaDonChiTietAdmin() {
     }
 
-    public HoaDonChiTietAdmin(int id, String date, String sum_Price, String name, String phone, String address, String status) {
+    public HoaDonChiTietAdmin(int id, String UId, String date, String sum_Price, String name, String phone, String address, String status) {
         this.id = id;
+        this.UId= UId;
         this.date = date;
         this.sum_Price = sum_Price;
         this.name = name;
@@ -60,6 +62,13 @@ public class HoaDonChiTietAdmin {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public String getUId() {
+        return UId;
+    }
+
+    public void setUId(String UId) {
+        this.UId = UId;
     }
 
     public String getDate() {

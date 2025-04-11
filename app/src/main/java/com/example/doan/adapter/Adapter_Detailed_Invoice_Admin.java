@@ -91,106 +91,54 @@ public class Adapter_Detailed_Invoice_Admin extends RecyclerView.Adapter<View_Ho
                 }
             });
 
-//            tv_phone.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View view) {
-//                    Intent i = new Intent(Intent.ACTION_CALL);
-//                    i.setData(Uri.parse("tel:"+hoaDonChiTietAdmin.getPhone()));
-//                    v.getContext().startActivity(i);
-//                    return false;
-//                }
-//            });
 
             dialog.show();
         });
 
         holder.tvStatus.setText(hoaDonChiTietAdmin.getStatus());
-        /*if (holder.tvStatus.getText().toString().equals("Confirm")) {
-            holder.tvStatus.setOnClickListener(v ->{
-                String status = "Doing";
-                hoaDonChiTietAdminList.clear();
-                notifyDataSetChanged();
-                HoaDonChiTietAdmin hoaDonChiTietAdmin1 = new HoaDonChiTietAdmin(hoaDonChiTietAdmin.getId(), hoaDonChiTietAdmin.getDate(), hoaDonChiTietAdmin.getSum_Price(), hoaDonChiTietAdmin.getName(), hoaDonChiTietAdmin.getPhone(), hoaDonChiTietAdmin.getAddress(), status);
-                FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                        .setValue(hoaDonChiTietAdmin1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                }
-                            }
-                        });
 
-            });
-        }
-        if (holder.tvStatus.getText().toString().equals("Doing")) {
-            holder.line_item1.setBackgroundResource(R.drawable.a_doing);
-            holder.tvStatus.setBackgroundResource(R.drawable.border2);
-        }
-        if (holder.tvStatus.getText().toString().equals("Shipping")) {
-            holder.line_item1.setBackgroundResource(R.drawable.a_shipping);
-            holder.tvStatus.setOnClickListener(v ->{
-                String status = "Done";
-                hoaDonChiTietAdminList.clear();
-                notifyDataSetChanged();
-                HoaDonChiTietAdmin hoaDonChiTietAdmin1 = new HoaDonChiTietAdmin(hoaDonChiTietAdmin.getId(), hoaDonChiTietAdmin.getDate(), hoaDonChiTietAdmin.getSum_Price(), hoaDonChiTietAdmin.getName(), hoaDonChiTietAdmin.getPhone(), hoaDonChiTietAdmin.getAddress(), status);
-                FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                        .setValue(hoaDonChiTietAdmin1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                }
-                            }
-                        });
-
-            });
-        }
-        if (holder.tvStatus.getText().toString().equals("Done")) {
-            holder.line_item1.setBackgroundResource(R.drawable.a_done);
-            holder.tvStatus.setBackgroundResource(R.drawable.border2);
-        }*/
-        holder.tvStatus.setOnClickListener(v -> {
-            String currentStatus = holder.tvStatus.getText().toString();
-            String newStatus = "";
-            switch (currentStatus) {
-                case "Confirm":
-                    newStatus = "Doing";
-                    break;
-                case "Doing":
-                    newStatus = "Shipping";
-                    break;
-                case "Shipping":
-                    newStatus = "Done";
-                    break;
-                case "Done":
-                    return;
-            }
-
-            hoaDonChiTietAdminList.clear();
-            notifyDataSetChanged();
-
-            HoaDonChiTietAdmin updatedInvoice = new HoaDonChiTietAdmin(
-                    hoaDonChiTietAdmin.getId(),
-                    hoaDonChiTietAdmin.getDate(),
-                    hoaDonChiTietAdmin.getSum_Price(),
-                    hoaDonChiTietAdmin.getName(),
-                    hoaDonChiTietAdmin.getPhone(),
-                    hoaDonChiTietAdmin.getAddress(),
-                    newStatus
-            );
-
-            FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
-                    .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                    .setValue(updatedInvoice)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(v.getContext(), "Trạng thái cập nhật thành công!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(v.getContext(), "Lỗi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        });
+//        holder.tvStatus.setOnClickListener(v -> {
+//            String currentStatus = holder.tvStatus.getText().toString();
+//            String newStatus = "";
+//            switch (currentStatus) {
+//                case "Confirm":
+//                    newStatus = "Doing";
+//                    break;
+//                case "Doing":
+//                    newStatus = "Shipping";
+//                    break;
+//                case "Shipping":
+//                    newStatus = "Done";
+//                    break;
+//                case "Done":
+//                    return;
+//            }
+//
+//            hoaDonChiTietAdminList.clear();
+//            notifyDataSetChanged();
+//
+//            HoaDonChiTietAdmin updatedInvoice = new HoaDonChiTietAdmin(
+//                    hoaDonChiTietAdmin.getId(),
+//                    hoaDonChiTietAdmin.getUId(),
+//                    hoaDonChiTietAdmin.getDate(),
+//                    hoaDonChiTietAdmin.getSum_Price(),
+//                    hoaDonChiTietAdmin.getName(),
+//                    hoaDonChiTietAdmin.getPhone(),
+//                    hoaDonChiTietAdmin.getAddress(),
+//                    newStatus
+//            );
+//
+//            FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
+//                    .child(String.valueOf(hoaDonChiTietAdmin.getId()))
+//                    .setValue(updatedInvoice)
+//                    .addOnCompleteListener(task -> {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(v.getContext(), "Trạng thái cập nhật thành công!", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(v.getContext(), "Lỗi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//        });
 
 
 

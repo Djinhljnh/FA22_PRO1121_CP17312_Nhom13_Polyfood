@@ -50,6 +50,7 @@ public class Frag_Cart extends Fragment implements Adapter_Receipt_User.Callback
     private String quantity = "";
     private String note = "";
     private List<HoaDonChiTiet> hoaDonChiTietList = new ArrayList<>();
+    String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     private EditText edt_address;
     private String name_user, email_user,pass_user, phone_user, gender_user, date_of_birth_user, image_user, address_user;
@@ -180,7 +181,7 @@ public class Frag_Cart extends Fragment implements Adapter_Receipt_User.Callback
                         });
             }
 
-            HoaDonChiTietAdmin hoaDonChiTietAdmin = new HoaDonChiTietAdmin(id1, mydate, tv_sumPrice.getText().toString(),name_user, phone_user,address_user,"Confirm");
+            HoaDonChiTietAdmin hoaDonChiTietAdmin = new HoaDonChiTietAdmin(id1,currentUserId, mydate, tv_sumPrice.getText().toString(),name_user, phone_user,address_user,"Confirm");
             FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
                     .child(String.valueOf(id1))
                     .setValue(hoaDonChiTietAdmin).addOnCompleteListener(new OnCompleteListener<Void>() {

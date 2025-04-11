@@ -2,6 +2,7 @@ package com.example.doan.adapter;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,9 +122,13 @@ public class Adapter_Detailed_Invoice_Shiper extends RecyclerView.Adapter<View_H
                 tvPhone.setText("Phone: " + hoaDonChiTietAdmin.getPhone());
                 tvAddress.setText("Address: " + hoaDonChiTietAdmin.getAddress());
                 tvStatus.setText("Status: Shipping");
+                String uid = hoaDonChiTietAdmin.getUId();
+                String date = hoaDonChiTietAdmin.getDate();
+                String id = String.valueOf(hoaDonChiTietAdmin.getId());
+
 
                 FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
+                        .child(id)
                         .child("status")
                         .setValue("Shipping")
                         .addOnCompleteListener(task -> {
@@ -134,19 +140,38 @@ public class Adapter_Detailed_Invoice_Shiper extends RecyclerView.Adapter<View_H
                                 Toast.makeText(v.getContext(), "Lỗi khi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
                             }
                         });
-                FirebaseDatabase.getInstance().getReference("Detailed_Invoice")
-                        .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                        .child("status")
-                        .setValue("Shipping")
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(v.getContext(), "Đang giao hàng...", Toast.LENGTH_SHORT).show();
-                                holder.tvStatus.setText("Shipping");
-                                holder.line_item1.setBackgroundResource(R.drawable.a_shipping);
-                            } else {
-                                Toast.makeText(v.getContext(), "Lỗi khi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+
+
+                DatabaseReference userInvoicesRef = FirebaseDatabase.getInstance()
+                        .getReference("Users")
+                        .child(uid)
+                        .child("Detailed_Invoice");
+
+                userInvoicesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot invoiceSnap : snapshot.getChildren()) {
+                            String invoiceTimestamp = invoiceSnap.child("date").getValue(String.class);
+                            if (invoiceTimestamp != null && invoiceTimestamp.equals(date)) {
+                                invoiceSnap.getRef().child("status").setValue("Shipping")
+                                        .addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(v.getContext(), "Cập nhật trạng thái thành công!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(v.getContext(), "Lỗi cập nhật Users!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                break;
                             }
-                        });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("FIREBASE", "Lỗi đọc dữ liệu: " + error.getMessage());
+                    }
+                });
+
 
                 btnMarkDone.setOnClickListener(doneView -> {
                     FirebaseDatabase.getInstance().getReference("Detailed_Invoices")
@@ -163,20 +188,37 @@ public class Adapter_Detailed_Invoice_Shiper extends RecyclerView.Adapter<View_H
                                     Toast.makeText(v.getContext(), "Lỗi khi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                    FirebaseDatabase.getInstance().getReference("Detailed_Invoice")
-                            .child(String.valueOf(hoaDonChiTietAdmin.getId()))
-                            .child("status")
-                            .setValue("Done")
-                            .addOnCompleteListener(doneTask -> {
-                                if (doneTask.isSuccessful()) {
-                                    Toast.makeText(v.getContext(), "Đã giao hàng xong!", Toast.LENGTH_SHORT).show();
-                                    holder.tvStatus.setText("Done");
-                                    holder.line_item1.setBackgroundResource(R.drawable.a_done);
-                                    dialog.dismiss();
-                                } else {
-                                    Toast.makeText(v.getContext(), "Lỗi khi cập nhật trạng thái!", Toast.LENGTH_SHORT).show();
+
+                    DatabaseReference userDone = FirebaseDatabase.getInstance()
+                            .getReference("Users")
+                            .child(uid)
+                            .child("Detailed_Invoice");
+
+                    userDone.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot invoiceSnap : snapshot.getChildren()) {
+                                String invoiceTimestamp = invoiceSnap.child("date").getValue(String.class);
+                                if (invoiceTimestamp != null && invoiceTimestamp.equals(date)) {
+                                    invoiceSnap.getRef().child("status").setValue("Done")
+                                            .addOnCompleteListener(task -> {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(v.getContext(), "Cập nhật trạng thái thành công!", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(v.getContext(), "Lỗi cập nhật Users!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                    break;
                                 }
-                            });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.e("FIREBASE", "Lỗi đọc dữ liệu: " + error.getMessage());
+                        }
+                    });
+
                 });
 
                 dialog.show();
